@@ -12,12 +12,12 @@ const sequelize = new Sequelize(
 );
 
 const Brand = require("./Brand");
-const Comment = require("./Comment");
-const Article = require("./Product");
+const Comment = require("./Configuration");
+const Product = require("./Product");
 
 Brand.initModel(sequelize);
 Comment.initModel(sequelize);
-Article.initModel(sequelize);
+Product.initModel(sequelize);
 
 /**
  * Luego de definir los modelos, se pueden establecer relaciones entre los
@@ -28,5 +28,5 @@ module.exports = {
   sequelize,
   Brand,
   Comment,
-  Article,
+  Product,
 };
