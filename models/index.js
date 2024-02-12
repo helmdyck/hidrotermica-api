@@ -1,9 +1,9 @@
 const { Sequelize } = require("sequelize");
 
 const sequelize = new Sequelize(
-  process.env.DB_DATABASE, // Ej: hack_academy_db
-  process.env.DB_USERNAME, // Ej: root
-  process.env.DB_PASSWORD, // Ej: root
+  process.env.DB_DATABASE,
+  process.env.DB_USERNAME,
+  process.env.DB_PASSWORD,
   {
     host: process.env.DB_HOST, // Ej: 127.0.0.1
     dialect: process.env.DB_CONNECTION, // Ej: mysql
@@ -12,12 +12,18 @@ const sequelize = new Sequelize(
 );
 
 const Brand = require("./Brand");
-const Comment = require("./Configuration");
+const Configuration = require("./Configuration");
 const Product = require("./Product");
+const Project = require("./Project");
 
 Brand.initModel(sequelize);
-Comment.initModel(sequelize);
+Configuration.initModel(sequelize);
 Product.initModel(sequelize);
+Project.initModel(sequelize);
+
+
+Brand.hasMany(Product);
+Product.belongsTo(Brand, { foreignKey: 'brandId' });
 
 /**
  * Luego de definir los modelos, se pueden establecer relaciones entre los
@@ -27,6 +33,7 @@ Product.initModel(sequelize);
 module.exports = {
   sequelize,
   Brand,
-  Comment,
+  Configuration,
   Product,
+  Project,
 };
