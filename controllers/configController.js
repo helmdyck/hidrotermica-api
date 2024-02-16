@@ -1,7 +1,22 @@
-const { User } = require("../models");
+const { Configuration, Brand, Project } = require("../models");
 
 // Display a listing of the resource.
-async function index(req, res) {}
+async function index(req, res) {
+  const configuration = await Configuration.findAll();
+  const brands = await Brand.findAll()
+  const projects = await Project.findAll()
+  res.json({ configuration, brands, projects });
+}
+
+async function showContact(req, res) {
+  const configuration = await Configuration.findAll();
+  res.json({ configuration });
+}
+
+async function showAbout(req, res) {
+  const configuration = await Configuration.findAll();
+  res.json({ configuration });
+}
 
 // Display the specified resource.
 async function show(req, res) {}
@@ -26,6 +41,8 @@ async function destroy(req, res) {}
 
 module.exports = {
   index,
+  showContact,
+  showAbout,
   show,
   create,
   store,

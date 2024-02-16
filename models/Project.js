@@ -12,6 +12,9 @@ class Project extends Model {
         name: {
           type: DataTypes.STRING,
         },
+        image: {
+          type: DataTypes.JSON,
+        },
         description: {
           type: DataTypes.TEXT,
         },
